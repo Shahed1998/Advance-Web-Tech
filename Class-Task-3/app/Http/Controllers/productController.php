@@ -55,6 +55,7 @@ class productController extends Controller
     }
 
     private function update($req, $id){
+
         $pid = decrypt($id);
         $product = productModel::find($pid);
         $product->product_name = $req->prodName;
@@ -63,6 +64,7 @@ class productController extends Controller
         $product->product_description = $req->prodDesc;
         $product->save();
         return redirect("/product/$id");
+        
     }
 
     public function submit(Request $req, $id){
