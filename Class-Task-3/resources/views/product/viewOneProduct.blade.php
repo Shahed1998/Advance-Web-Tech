@@ -1,4 +1,4 @@
-@extends('layouts.product')
+@extends('layouts.productLayout')
 @section('content')
     <!-- {{$prod}} -->
         <form action="" method="post">

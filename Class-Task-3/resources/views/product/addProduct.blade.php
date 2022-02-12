@@ -1,4 +1,4 @@
-@extends('layouts.product')
+@extends('layouts.productLayout')
 @section('content')
     <form action="" method="post">
         {{@csrf_field()}}

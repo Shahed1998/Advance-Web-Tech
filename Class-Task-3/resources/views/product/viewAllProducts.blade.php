@@ -1,4 +1,4 @@
-@extends('layouts.product')
+@extends('layouts.productLayout')
 @section('content')
     @foreach($allProducts as $product)
         <table>

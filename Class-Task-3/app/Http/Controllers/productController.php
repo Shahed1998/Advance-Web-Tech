@@ -9,7 +9,7 @@ class productController extends Controller
 {
     
     public function addProductGET(){
-        return view('addProduct');
+        return view('product.addProduct');
     }
 
     public function addProductPOST(Request $req){
@@ -41,12 +41,16 @@ class productController extends Controller
 
     public function viewAll(){
         $products = productModel::all();
-        return view('viewAllProducts')->with('allProducts', $products);
+        return view('product.viewAllProducts')->with('allProducts', $products);
     }
 
-    public function viewOne($id){
+    public function viewOne(Request $req, $id){
+        if($req->session()->has('customer_id')){
+            return redirect("/customer/productDetail/$id");
+        }
+
         $prod = productModel::where('product_id', '=', decrypt($id))->first();
-        return view('viewOneProduct')->with('prod', $prod);
+        return view('product.viewOneProduct')->with('prod', $prod);
     }
 
     private function delete($id){
