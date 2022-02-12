@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CustomerModel;
 use App\Models\productModel;
+use App\Models\Order_info;
 
 class customerController extends Controller
 {
@@ -75,7 +76,13 @@ class customerController extends Controller
 
     // Customer cart
     public function customerCartGet(Request $req){
-        return "Cart";
+        if($req->session()->has('cart')){
+            $cartItems = $req->session()->get('cart');
+            return view('customer.cart')
+            ->with('pageName', 'Customer cart')
+            ->with('cartItems', $cartItems);
+        }
+        return view('customer.emptyCart')->with('pageName', 'Customer cart');
     }
 
     // Logout
@@ -99,6 +106,29 @@ class customerController extends Controller
         $cart_products = $req->session()->get('cart');
         array_push($cart_products, json_encode($product[0]));
         $req->session()->put('cart', $cart_products);
-        return $req->session()->get('cart');
+        return redirect('/customer/cart');
+    }
+
+    // ordering items from cart
+    public function cartPost(Request $req){
+        $order_info = new Order_info();
+        $order_info->customer_id = $req->session()->get('customer_id');
+        $order_info->product_id = decrypt($req->product_id);
+        $order_info->save();
+        return redirect('/customer/orders');
+    }
+
+    // ordered items
+    public function orderGet(Request $req){
+        $customer_id = $req->session()->get('customer_id');
+        $orders = Order_info::where('customer_id', '=', $customer_id)->get();
+        $orderedProducts = [];
+        foreach($orders as $order){
+            $products = productModel::where('product_id', '=', $order['product_id'] )->get();
+            array_push($orderedProducts, $products);
+        }
+        return view('customer.orders')
+        ->with('pageName', 'Ordered items')
+        ->with('orderDetails', $orderedProducts);
     }
 }

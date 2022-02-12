@@ -33,5 +33,7 @@ Route::get('/customer/dashboard', [customerController::class, 'customerDashboard
 Route::get('/customer/cart', [customerController::class, 'customerCartGet'])->name('customer.cart');
 Route::get('/customer/productDetail/{pid}', [customerController::class, 'getOneProduct'])->name('customer.viewOneProduct');
 Route::get('/customer/logout', [customerController::class, 'customerLogout'])->name('customer.logout');
+Route::get('/customer/orders', [customerController::class, 'orderGet'])->name('customer.orders');
 Route::post('/customer/login', [customerController::class, 'loginPost']);
 Route::post('/customer/productDetail/{pid}', [customerController::class, 'addToCart']);
+Route::post('/customer/cart', [customerController::class, 'cartPost']);
