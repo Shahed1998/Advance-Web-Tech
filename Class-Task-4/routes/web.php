@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\studentController;
+use App\Http\Controllers\departmentController;
         
 
 /*
@@ -22,3 +23,7 @@ Route::get('/', [homeController::class, 'getHome'])->name('home');
 // Student routes
 Route::get('/students/all', [studentController::class, 'getStudents'])->name('all.students');
 Route::get('/students/one/{id}', [studentController::class, 'getOneStudent'])->name('one.student');
+
+// Department routes
+Route::get('/departments/all', [departmentController::class, 'getAll'])->name('all.departments');
+Route::get('/departments/one/{id}', [departmentController::class, 'getOne'])->name('one.department');
