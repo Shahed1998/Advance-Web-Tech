@@ -15,4 +15,5 @@ class DepartmentModel extends Model
     public function students(){
         return $this->hasMany(StudentModel::class, 'd_id', 'id');
     }
+
 }

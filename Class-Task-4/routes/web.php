@@ -20,6 +20,9 @@ use App\Http\Controllers\departmentController;
 // Home routes
 Route::get('/', [homeController::class, 'getHome'])->name('home');
 
+// Course routes
+// Route::get('/courses/all', []);
+
 // Student routes
 Route::get('/students/all', [studentController::class, 'getStudents'])->name('all.students');
 Route::get('/students/one/{id}', [studentController::class, 'getOneStudent'])->name('one.student');

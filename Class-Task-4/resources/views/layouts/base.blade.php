@@ -11,6 +11,7 @@
     <div id="nav">
         <a href="/" class="btn btn-link">Home</a>
         <a href="{{route('all.departments')}}" class="btn btn-link">All departments</a>
+        <a href="">All courses</a>
         <a href="{{route('all.students')}}" class="btn btn-link">All students</a>
     </div>
     <h1>{{$pageName ?? ""}}</h1>
