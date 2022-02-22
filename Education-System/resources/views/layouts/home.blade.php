@@ -8,9 +8,6 @@
     <title>Education System</title>
 </head>
 <body>
-    <div id="nav">
-        <a href="/" class="btn btn-link">Logout</a>
-    </div>
     <h1>{{$pageName ?? ""}}</h1>
     <div id="content">
         @yield('content')

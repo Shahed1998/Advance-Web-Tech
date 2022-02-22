@@ -21,9 +21,11 @@ class studentController extends Controller
     // get one student
     public function getOneStudent(Request $req){
         $studentID = decrypt($req->id);
-        $student = StudentModel::where("id", "=", $studentID)->first();
+        $student = StudentModel::where("uc_id", "=", $studentID)->first();
         return view("studentInfo")
-        ->with("pageName", "Student's Info")->with("infos", $student);;
-        
+        ->with("pageName", "Student's profile")
+        ->with("infos", $student);
+
+        // return $student->courses_student;
     }
 }

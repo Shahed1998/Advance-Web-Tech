@@ -19,6 +19,7 @@ use App\Http\Controllers\departmentController;
 
 // Home routes
 Route::get('/', [homeController::class, 'getHome'])->name('home');
+Route::post('/', [homeController::class, 'postHome']);
 
 // Course routes
 // Route::get('/courses/all', []);
