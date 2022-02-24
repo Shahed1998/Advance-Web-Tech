@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="nav">
-        <a href="/" class="btn btn-link">Logout</a>
+        <a href="{{route('logout')}}" class="btn btn-link">Logout</a>
     </div>
     <h1>{{$pageName ?? ""}}</h1>
     <div id="content">

@@ -14,6 +14,7 @@ class homeController extends Controller
 
     // Login
     public function postHome(Request $req){
+        
         $valid = $this->validate($req, [
             'uname'=>'required',
             'upass'=>'required'
@@ -35,15 +36,13 @@ class homeController extends Controller
             $user_role = $user->user->user_role;
             
             if($user_role == "Student"){
-                return redirect()->route("one.student", ["id"=>$user_id]);
+                $req->session()->put("student_id", $user_id);
+                return redirect()->route("one.student");
             }
         }
 
         $req->session()->flash('message', "User not found");
         return redirect()->route("home");
 
-        // $allUsers = 
-
-       
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.home')
 @section('content')
-    
+
     @if(Session::has('message'))
         <span class="message" style="color:red">
             {{Session::get('message')}}
