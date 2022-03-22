@@ -95,5 +95,32 @@ class DeptController extends Controller
         }
     }
 
+    // Department details
+    public function deptDetails(Request $req, $d_id){
+        try{
+            $department = DeptModel::where('id',$d_id)->first();
+
+            if(!$department){
+                throw new \ErrorException();
+            }
+
+            return response()->json([
+                "Status"=>"Success",
+                "data"=>[
+                    "dID"=>$department->id,
+                    "name"=>$department->name,
+                    "courses"=>$department->course
+                ]
+            ]);
+
+        }catch(\Exception $e){
+
+            return response()->json([
+                "Status"=>"Failed",
+                "data"=>null
+            ],404);
+
+        }
+    }
     
 }
